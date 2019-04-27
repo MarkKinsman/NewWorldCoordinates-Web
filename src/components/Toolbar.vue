@@ -5,8 +5,18 @@
       <span class="font-weight-light">COORDINATES</span>
     </v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-btn flat href="https://github.com/MarkKinsman/NewWorldCoordinates-Web" target="_blank">
-      <span class="mr-2">GitHub</span>
+
+    <v-btn icon href="/">
+      <v-icon id="iconSize">home</v-icon>
+    </v-btn>
+    <v-btn icon @click="setListMode">
+      <v-icon id="iconSize">view_list</v-icon>
+    </v-btn>
+    <v-btn icon @click="setFloorPlanMode">
+      <v-icon id="iconSize">dashboard</v-icon>
+    </v-btn>
+    <v-btn icon href="https://github.com/MarkKinsman/NewWorldCoordinates-Web">
+      <v-icon id="iconSize">code</v-icon>
     </v-btn>
   </v-toolbar>
 </template>
@@ -19,6 +29,14 @@ export default {
     return {
       //
     };
+  },
+  methods: {
+    setListMode() {
+      this.$store.commit("setAppMode", "List");
+    },
+    setFloorPlanMode() {
+      this.$store.commit("setAppMode", "Floor Plan");
+    }
   }
 };
 </script>

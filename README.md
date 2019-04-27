@@ -1,29 +1,12 @@
-# front
+# New World Coordinates
 
-## Project setup
-```
-npm install
-```
+AR/VR construction issue tracking and markup app, with a web viewer interface.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+![basic vue](assets/ui.png)
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+There are three repositories for this project: <br>
+<ul>
+  <li>https://github.com/MarkKinsman/NewWorldCoordinates-Unity
+  <li>https://github.com/MarkKinsman/NewWorldCoordinates-API
+  <li>https://github.com/MarkKinsman/NewWorldCoordinates-Web
+</ul>

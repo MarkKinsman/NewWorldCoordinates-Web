@@ -2,21 +2,24 @@
   <v-app>
     <Toolbar/>
 
-    <v-content>
-      <HelloWorld/>
+    <v-content id="main">
+      <Header/>
+      <DataTable/>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
+import Header from "./components/Header";
 import Toolbar from "./components/Toolbar";
+import DataTable from "./components/DataTable";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
-    Toolbar
+    Header,
+    Toolbar,
+    DataTable
   },
   data() {
     return {
@@ -25,3 +28,14 @@ export default {
   }
 };
 </script>
+
+<style>
+#main {
+  width: 55%;
+  min-width: 360px;
+  margin: auto;
+  padding: 10px;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+}
+</style>

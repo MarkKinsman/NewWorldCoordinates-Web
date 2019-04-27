@@ -1,8 +1,13 @@
 <template>
   <v-container style="padding: 5px">
+    <!-- <div ref="planImg" id="planImg">
+      <v-img :src="require('../assets/testFloorPlan.jpg')" id="plan"></v-img>
+    </div>-->
     <div ref="planImg" id="planImg" class="img-overlay-wrap">
       <img :src="require('../assets/testFloorPlan.jpg')" id="plan">
-      <svg :viewBox="svgViewBox"></svg>
+      <svg viewBox="0 0 500 500">
+        <!-- <circle cx="75" cy="75" r="50" fill="rebeccapurple"></circle> -->
+      </svg>
     </div>
   </v-container>
 </template>

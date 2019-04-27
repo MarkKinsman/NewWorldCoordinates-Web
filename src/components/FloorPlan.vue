@@ -27,17 +27,17 @@ export default {
         .attr("class", "tooltip")
         .style("opacity", 0);
 
-      var jsonCircles = [
-        { x_axis: 0, y_axis: 0, color: "green", note: "sample" },
-        { x_axis: 573, y_axis: 0, color: "green", note: "sample" },
-        { x_axis: 0, y_axis: 250, color: "green", note: "sample" },
-        {
-          x_axis: 573,
-          y_axis: 250,
-          color: "green",
-          note: "sample"
-        }
-      ];
+      // var jsonCircles = [
+      //   { x_axis: 0, y_axis: 0, color: "green", note: "sample" },
+      //   { x_axis: 573, y_axis: 0, color: "green", note: "sample" },
+      //   { x_axis: 0, y_axis: 250, color: "green", note: "sample" },
+      //   {
+      //     x_axis: 573,
+      //     y_axis: 250,
+      //     color: "green",
+      //     note: "sample"
+      //   }
+      // ];
 
       var svgContainer = d3.select("svg");
 
@@ -48,19 +48,19 @@ export default {
         .append("circle");
 
       circles
-        .attr("cx", function(d) {
+        .attr("cx", d => {
           return d.x_axis;
         })
-        .attr("cy", function(d) {
+        .attr("cy", d => {
           return d.y_axis;
         })
-        .attr("r", function(d) {
+        .attr("r", () => {
           return 10;
         })
-        .attr("note", function(d) {
+        .attr("note", d => {
           return d.note;
         })
-        .style("fill", function(d) {
+        .style("fill", d => {
           return d.color;
         })
         .on("mouseover", d => {
@@ -92,6 +92,7 @@ export default {
       let img = new Image();
       img.src = require("../assets/testFloorPlan.jpg");
       this.image = img;
+      console.log("IMG", img);
     }
   },
   computed: {

@@ -34,26 +34,16 @@ export default {
         {
           x_axis: 573,
           y_axis: 250,
-          radius: 10,
           color: "green",
           note: "sample"
-        },
-        {
-          x_axis: 70,
-          y_axis: 125,
-          radius: 10,
-          color: "purple",
-          note: "sample"
-        },
-        { x_axis: 110, y_axis: 100, color: "red", note: "sample" },
-        { x_axis: 300, y_axis: 200, color: "red", note: "sample" }
+        }
       ];
 
       var svgContainer = d3.select("svg");
 
       var circles = svgContainer
         .selectAll("circle")
-        .data(jsonCircles)
+        .data(this.markupData)
         .enter()
         .append("circle");
 
@@ -79,7 +69,15 @@ export default {
             .duration(200)
             .style("opacity", 0.9);
           div
-            .html(d.note + "<br/>" + d.color)
+            .html(
+              d.note +
+                "<br/>" +
+                d.summary +
+                "<br/>" +
+                d.comments +
+                "<br/>" +
+                d.color
+            )
             .style("left", d3.event.pageX + "px")
             .style("top", d3.event.pageY - 28 + "px");
         })
@@ -182,14 +180,14 @@ export default {
 
 div.tooltip {
   position: absolute;
-  text-align: center;
-  width: 60px;
-  height: 28px;
+  text-align: left;
+  width: 120px;
+  height: 55px;
   padding: 2px;
   font: 10px sans-serif;
-  background: lightgray;
+  background: lightgrey;
   border: 0px;
-  border-radius: 8px;
+  border-radius: 3px;
   pointer-events: none;
 }
 

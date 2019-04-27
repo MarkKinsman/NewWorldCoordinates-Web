@@ -2,7 +2,7 @@
   <v-container style="padding: 5px">
     <div ref="planImg" id="planImg" class="img-overlay-wrap">
       <img v-if="image !=null" :src="image.src" id="plan">
-      <svg viewBox="0 0 500 500"></svg>
+      <svg viewBox="0 0 573 573"></svg>
     </div>
   </v-container>
 </template>
@@ -22,16 +22,15 @@ export default {
   methods: {
     DrawChart() {
       var jsonCircles = [
-        { x_axis: 30, y_axis: 30, radius: 20, color: "green" },
-        { x_axis: 70, y_axis: 70, radius: 20, color: "purple" },
-        { x_axis: 110, y_axis: 100, radius: 20, color: "red" }
+        { x_axis: 0, y_axis: 0, radius: 10, color: "green" },
+        { x_axis: 573, y_axis: 0, radius: 10, color: "green" },
+        { x_axis: 0, y_axis: 250, radius: 10, color: "green" },
+        { x_axis: 573, y_axis: 250, radius: 10, color: "green" },
+        { x_axis: 70, y_axis: 70, radius: 10, color: "purple" },
+        { x_axis: 110, y_axis: 100, radius: 10, color: "red" }
       ];
 
-      var svgContainer = d3
-        .select("svg")
-        // .append("svg")
-        .attr("width", 200)
-        .attr("height", 200);
+      var svgContainer = d3.select("svg");
 
       var circles = svgContainer
         .selectAll("circle")
@@ -61,10 +60,13 @@ export default {
   },
   computed: {
     svgViewBox() {
-      return (
-        "0 0" + " " + String(this.imgWidth) + " " + String(this.imgHeight) ||
-        "Error"
-      );
+      try {
+        return (
+          "0 0" + " " + String(this.imgWidth) + " " + String(this.imgHeight)
+        );
+      } catch {
+        return "0 0 500 500";
+      }
     },
     plan() {
       return document.getElementById("plan");

@@ -1,9 +1,29 @@
-# NewWorldCoordinates-Web
-The web portion of the Seattle AEC Hackathon team New World Coordinates
+# front
 
-There are three repositories for this project: <br>
-<ul>
-  <li>https://github.com/MarkKinsman/NewWorldCoordinates-Unity
-  <li>https://github.com/MarkKinsman/NewWorldCoordinates-API
-  <li>https://github.com/MarkKinsman/NewWorldCoordinates-Web
-</ul>
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Run your tests
+```
+npm run test
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -21,13 +21,32 @@ export default {
   },
   methods: {
     DrawChart() {
+      const div = d3
+        .select("body")
+        .append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
       var jsonCircles = [
-        { x_axis: 0, y_axis: 0, radius: 10, color: "green" },
-        { x_axis: 573, y_axis: 0, radius: 10, color: "green" },
-        { x_axis: 0, y_axis: 250, radius: 10, color: "green" },
-        { x_axis: 573, y_axis: 250, radius: 10, color: "green" },
-        { x_axis: 70, y_axis: 70, radius: 10, color: "purple" },
-        { x_axis: 110, y_axis: 100, radius: 10, color: "red" }
+        { x_axis: 0, y_axis: 0, radius: 10, color: "green", note: "sample" },
+        { x_axis: 573, y_axis: 0, radius: 10, color: "green", note: "sample" },
+        { x_axis: 0, y_axis: 250, radius: 10, color: "green", note: "sample" },
+        {
+          x_axis: 573,
+          y_axis: 250,
+          radius: 10,
+          color: "green",
+          note: "sample"
+        },
+        {
+          x_axis: 70,
+          y_axis: 125,
+          radius: 10,
+          color: "purple",
+          note: "sample"
+        },
+        { x_axis: 110, y_axis: 100, radius: 10, color: "red", note: "sample" },
+        { x_axis: 300, y_axis: 200, radius: 10, color: "red", note: "sample" }
       ];
 
       var svgContainer = d3.select("svg");
@@ -48,8 +67,27 @@ export default {
         .attr("r", function(d) {
           return d.radius;
         })
+        .attr("note", function(d) {
+          return d.note;
+        })
         .style("fill", function(d) {
           return d.color;
+        })
+        .on("mouseover", d => {
+          div
+            .transition()
+            .duration(200)
+            .style("opacity", 0.9);
+          div
+            .html(d.note + "<br/>" + d.color)
+            .style("left", d3.event.pageX + "px")
+            .style("top", d3.event.pageY - 28 + "px");
+        })
+        .on("mouseout", () => {
+          div
+            .transition()
+            .duration(500)
+            .style("opacity", 0);
         });
     },
     LoadImage() {
@@ -137,6 +175,19 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 60px;
+  height: 28px;
+  padding: 2px;
+  font: 10px sans-serif;
+  background: lightgray;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
 }
 
 /* .img-overlay-wrap:hover {

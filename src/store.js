@@ -5,11 +5,15 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    appMode: "List"
+    appMode: "List",
+    markupData: []
   },
   mutations: {
     setAppMode(state, appMode) {
       state.appMode = appMode;
+    },
+    setMarkupData(state, markupData) {
+      state.markupData = markupData;
     }
   },
   actions: {}

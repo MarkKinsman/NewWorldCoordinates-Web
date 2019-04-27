@@ -28,9 +28,9 @@ export default {
         .style("opacity", 0);
 
       var jsonCircles = [
-        { x_axis: 0, y_axis: 0, radius: 10, color: "green", note: "sample" },
-        { x_axis: 573, y_axis: 0, radius: 10, color: "green", note: "sample" },
-        { x_axis: 0, y_axis: 250, radius: 10, color: "green", note: "sample" },
+        { x_axis: 0, y_axis: 0, color: "green", note: "sample" },
+        { x_axis: 573, y_axis: 0, color: "green", note: "sample" },
+        { x_axis: 0, y_axis: 250, color: "green", note: "sample" },
         {
           x_axis: 573,
           y_axis: 250,
@@ -45,8 +45,8 @@ export default {
           color: "purple",
           note: "sample"
         },
-        { x_axis: 110, y_axis: 100, radius: 10, color: "red", note: "sample" },
-        { x_axis: 300, y_axis: 200, radius: 10, color: "red", note: "sample" }
+        { x_axis: 110, y_axis: 100, color: "red", note: "sample" },
+        { x_axis: 300, y_axis: 200, color: "red", note: "sample" }
       ];
 
       var svgContainer = d3.select("svg");
@@ -65,7 +65,7 @@ export default {
           return d.y_axis;
         })
         .attr("r", function(d) {
-          return d.radius;
+          return 10;
         })
         .attr("note", function(d) {
           return d.note;
@@ -97,6 +97,9 @@ export default {
     }
   },
   computed: {
+    markupData() {
+      return this.$store.state.markupData;
+    },
     svgViewBox() {
       try {
         return (

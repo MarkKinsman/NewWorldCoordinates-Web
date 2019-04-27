@@ -42,22 +42,43 @@ export default {
         id: "X1",
         summary: "An issue",
         comments: "Stuff is messed up",
-        location: [23, 98, 10]
+        location: [23, 98, 10],
+        x_axis: 70,
+        y_axis: 125,
+        radius: 10,
+        color: "purple",
+        note: "sample"
       },
       {
         id: "X2",
         summary: "Another issue",
         comments: "Concrete in wrong place",
-        location: [5, 33, 5]
+        location: [5, 33, 5],
+        x_axis: 110,
+        y_axis: 100,
+        color: "red",
+        note: "sample"
       },
       {
         id: "X3",
         summary: "An issue",
         comments: "Steel has melted",
-        location: [85, 27, 15]
+        location: [85, 27, 15],
+        x_axis: 300,
+        y_axis: 200,
+        color: "red",
+        note: "sample"
       }
     ]
-  })
+  }),
+  mounted() {
+    this.$store.commit("setMarkupData", this.markups);
+  },
+  watch: {
+    markups: function(val) {
+      this.$store.commit("setMarkupData", val);
+    }
+  }
 };
 </script>
 

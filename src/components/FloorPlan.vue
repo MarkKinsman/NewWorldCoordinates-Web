@@ -1,13 +1,8 @@
 <template>
   <v-container style="padding: 5px">
-    <!-- <div ref="planImg" id="planImg">
-      <v-img :src="require('../assets/testFloorPlan.jpg')" id="plan"></v-img>
-    </div>-->
     <div ref="planImg" id="planImg" class="img-overlay-wrap">
-      <img :src="require('../assets/testFloorPlan.jpg')" id="plan">
-      <svg viewBox="0 0 500 500">
-        <!-- <circle cx="75" cy="75" r="50" fill="rebeccapurple"></circle> -->
-      </svg>
+      <img v-if="image !=null" :src="image.src" id="plan">
+      <svg viewBox="0 0 500 500"></svg>
     </div>
   </v-container>
 </template>
@@ -17,8 +12,11 @@ var d3 = require("d3");
 
 export default {
   name: "FloorPlan",
-  data: () => ({}),
+  data: () => ({
+    image: null
+  }),
   mounted() {
+    this.LoadImage();
     this.DrawChart();
   },
   methods: {
@@ -41,7 +39,7 @@ export default {
         .enter()
         .append("circle");
 
-      var circleAttributes = circles
+      circles
         .attr("cx", function(d) {
           return d.x_axis;
         })
@@ -54,11 +52,19 @@ export default {
         .style("fill", function(d) {
           return d.color;
         });
+    },
+    LoadImage() {
+      let img = new Image();
+      img.src = require("../assets/testFloorPlan.jpg");
+      this.image = img;
     }
   },
   computed: {
     svgViewBox() {
-      return "0 0" + " " + String(this.imgWidth) + " " + String(this.imgHeight);
+      return (
+        "0 0" + " " + String(this.imgWidth) + " " + String(this.imgHeight) ||
+        "Error"
+      );
     },
     plan() {
       return document.getElementById("plan");

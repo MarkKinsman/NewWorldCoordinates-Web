@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { Promise } from "q";
 var d3 = require("d3");
 
 export default {
@@ -16,8 +17,11 @@ export default {
     image: null
   }),
   mounted() {
-    this.LoadImage();
-    this.DrawChart();
+    this.LoadImage().then(img => {
+      console.log("IMG", img.height);
+      console.log("IMG", img.width);
+      this.DrawChart();
+    });
   },
   methods: {
     DrawChart() {
@@ -26,18 +30,6 @@ export default {
         .append("div")
         .attr("class", "tooltip")
         .style("opacity", 0);
-
-      // var jsonCircles = [
-      //   { x_axis: 0, y_axis: 0, color: "green", note: "sample" },
-      //   { x_axis: 573, y_axis: 0, color: "green", note: "sample" },
-      //   { x_axis: 0, y_axis: 250, color: "green", note: "sample" },
-      //   {
-      //     x_axis: 573,
-      //     y_axis: 250,
-      //     color: "green",
-      //     note: "sample"
-      //   }
-      // ];
 
       var svgContainer = d3.select("svg");
 
@@ -89,10 +81,12 @@ export default {
         });
     },
     LoadImage() {
-      let img = new Image();
-      img.src = require("../assets/testFloorPlan.jpg");
-      this.image = img;
-      console.log("IMG", img);
+      return new Promise(resolve => {
+        let img = new Image();
+        img.src = require("../assets/testFloorPlan.jpg");
+        this.image = img;
+        resolve(img);
+      });
     }
   },
   computed: {

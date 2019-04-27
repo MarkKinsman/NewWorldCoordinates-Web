@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container style="padding: 5px">
     <v-layout text-xs-center wrap>
       <v-flex xs12>
         <v-img :src="require('../assets/plane.svg')" class="my-3" contain height="150"></v-img>

@@ -3,8 +3,10 @@
     <Toolbar/>
     <v-content id="main">
       <Header/>
+      <!-- DATA TABLE -->
       <transition name="ui-fade">
         <DataTable v-if="appMode=='List'"/>
+        <FloorPlan v-if="appMode=='Floor Plan'"/>
       </transition>
     </v-content>
   </v-app>
@@ -14,13 +16,15 @@
 import Header from "./components/Header";
 import Toolbar from "./components/Toolbar";
 import DataTable from "./components/DataTable";
+import FloorPlan from "./components/FloorPlan";
 
 export default {
   name: "App",
   components: {
     Header,
     Toolbar,
-    DataTable
+    DataTable,
+    FloorPlan
   },
   data() {
     return {

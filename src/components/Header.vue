@@ -5,7 +5,7 @@
         <v-img :src="require('../assets/plane.svg')" class="my-3" contain height="150"></v-img>
       </v-flex>
 
-      <v-flex mb-4>
+      <v-flex mb-4 style="margin-bottom: 5px">
         <h1 class="display-1 font-weight-bold mb-3">New World Coordinates</h1>
         <p class="subheading font-weight-regular">Real time visualization of construction issues</p>
       </v-flex>

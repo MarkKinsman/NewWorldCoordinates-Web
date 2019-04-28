@@ -97,11 +97,12 @@ export default {
       return {
         datasets: [
           {
-            data: [10, 20, 30],
-            backgroundColor: ["#E9967A", "#F5DEB3", "#9ACD32"]
+            data: [20, 30],
+            // backgroundColor: ["#E9967A", "#F5DEB3", "#9ACD32"]
+            backgroundColor: ["#E9967A", "#9ACD32"]
           }
         ],
-        labels: ["Red", "Yellow", "Green"]
+        labels: ["Red", "Green"]
       };
     },
     openIssuesSample() {
@@ -112,12 +113,12 @@ export default {
             backgroundColor: ["#E9967A", "#9ACD32"]
           }
         ],
-        labels: ["Tier 1", "Tier 2"]
+        labels: ["Build", "Design"]
       };
     },
     openIssuesData() {
       var dset = [this.$data.openIssues, this.$data.closedIssues];
-      var temp = {
+      return {
         datasets: [
           {
             data: dset,
@@ -126,7 +127,6 @@ export default {
         ],
         labels: ["Open", "Closed"]
       };
-      return temp;
     }
   },
   methods: {

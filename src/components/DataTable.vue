@@ -37,7 +37,27 @@
         >Your search for "{{ search }}" found no results.</v-alert>
       </template>
     </v-data-table>
-    <PieChart/>
+
+    <div class="grid-container">
+      <div class="grid-item">
+        <PieChart canvasId="testA" title="Open Issues"></PieChart>
+      </div>
+      <div class="grid-item">
+        <PieChart canvasId="testB" title="Construction/Design"></PieChart>
+      </div>
+      <div class="grid-item">
+        <PieChart canvasId="testC" title="Projects"></PieChart>
+      </div>
+    </div>
+
+    <!-- <v-layout row wrap>
+      <v-flex>
+        <PieChart canvasId="testA"></PieChart>
+      </v-flex>
+      <v-flex>
+        <PieChart canvasId="testB"></PieChart>
+      </v-flex>
+    </v-layout>-->
   </div>
 </template>
 
@@ -164,5 +184,11 @@ export default {
   width: 50%;
   height: 40px;
   font-weight: bold;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
 }
 </style>

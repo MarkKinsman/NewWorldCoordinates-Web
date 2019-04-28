@@ -8,7 +8,7 @@
 import Chart from "chart.js";
 export default {
   name: "PieChart",
-  props: ["canvasId", "title"],
+  props: ["canvasId", "title", "data"],
   data: () => ({}),
   mounted() {
     this.DrawChart();
@@ -41,18 +41,9 @@ export default {
         }
       };
       var ctx = document.getElementById(self.canvasId);
-      var data = {
-        datasets: [
-          {
-            data: [10, 20, 30],
-            backgroundColor: ["#E9967A", "#F5DEB3", "#9ACD32"]
-          }
-        ],
-        labels: ["Red", "Yellow", "Green"]
-      };
       new Chart(ctx, {
         type: "doughnut",
-        data: data,
+        data: self.data,
         options: options
       });
     }

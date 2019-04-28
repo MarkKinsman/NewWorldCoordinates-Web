@@ -40,13 +40,13 @@
 
     <div class="grid-container">
       <div class="grid-item">
-        <PieChart canvasId="testA" title="Open Issues"></PieChart>
+        <PieChart canvasId="testA" title="Open Issues" :data="sampleData"></PieChart>
       </div>
       <div class="grid-item">
-        <PieChart canvasId="testB" title="Construction/Design"></PieChart>
+        <PieChart canvasId="testB" title="Construction/Design" :data="sampleData"></PieChart>
       </div>
       <div class="grid-item">
-        <PieChart canvasId="testC" title="Projects"></PieChart>
+        <PieChart canvasId="testC" title="Projects" :data="sampleData"></PieChart>
       </div>
     </div>
 
@@ -86,39 +86,6 @@ export default {
       { text: "Status", value: "status", align: "left" },
       { text: "Creator", value: "creator", align: "left" }
     ],
-    markups: [
-      {
-        id: "X1",
-        summary: "Studs placed at wrong spacing.",
-        comments: "Stuff is messed up.",
-        location: [70, 125, 0],
-        x_axis: 70,
-        y_axis: 125,
-        radius: 10,
-        color: "purple",
-        note: "Revise before RFI #23."
-      },
-      {
-        id: "X2",
-        summary: "Concrete pour QA/QC issue.",
-        comments: "Concrete in wrong place.",
-        location: [110, 100, 0],
-        x_axis: 110,
-        y_axis: 100,
-        color: "red",
-        note: "Never use WG Clark Construction again."
-      },
-      {
-        id: "X3",
-        summary: "Steel member failure.",
-        comments: "Steel has melted.",
-        location: [300, 200, 0],
-        x_axis: 300,
-        y_axis: 200,
-        color: "red",
-        note: "Don't let WG Clark Construction install steel again."
-      }
-    ],
     webMarkups: []
   }),
   mounted() {
@@ -129,6 +96,19 @@ export default {
   watch: {
     webMarkups: function(val) {
       this.$store.commit("setMarkupData", val);
+    }
+  },
+  computed: {
+    sampleData() {
+      return {
+        datasets: [
+          {
+            data: [10, 20, 30],
+            backgroundColor: ["#E9967A", "#F5DEB3", "#9ACD32"]
+          }
+        ],
+        labels: ["Red", "Yellow", "Green"]
+      };
     }
   },
   methods: {
@@ -189,6 +169,6 @@ export default {
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  padding: 10px;
+  padding: 5px;
 }
 </style>

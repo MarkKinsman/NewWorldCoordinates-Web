@@ -22,7 +22,7 @@
 </template>
 
 <script>
-const axios = require("axios");
+const request = require("request");
 
 export default {
   name: "DataTable",
@@ -71,7 +71,8 @@ export default {
         color: "red",
         note: "Don't let WG Clark Construction install steel again."
       }
-    ]
+    ],
+    webMarkups: []
   }),
   mounted() {
     this.$store.commit("setMarkupData", this.markups);
@@ -84,19 +85,41 @@ export default {
   },
   methods: {
     GetMarkupData() {
-      axios({
-        method: "post",
+      let self = this;
+      var options = {
+        method: "POST",
         url: "http://nwc.virtual-insights.com/v1/markups",
         headers: {
+          "cache-control": "no-cache",
+          Connection: "keep-alive",
+          "content-length": "12",
+          "accept-encoding": "gzip, deflate",
+          Host: "nwc.virtual-insights.com",
+          "Postman-Token":
+            "983ae45a-b01b-4610-bb1b-dace74668c2f,8058da64-334d-484a-a5db-0985cff44afb",
+          "Cache-Control": "no-cache",
+          Accept: "*/*",
+          "User-Agent": "PostmanRuntime/7.11.0",
           "Content-Type": "application/x-www-form-urlencoded"
-        }
-      })
-        .then(response => {
-          console.log("RESPONSE", response);
-        })
-        .catch(err => {
-          console.error(err);
+        },
+        form: { version_id: "1" }
+      };
+
+      request(options, function(error, response, body) {
+        if (error) throw new Error(error);
+
+        let data = JSON.parse(body);
+        data.map(d => {
+          console.log(d);
+          d.location = JSON.parse(d.location);
+          d.location.x = +d.location.x;
+          d.location.y = +d.location.y;
+          d.location.z = +d.location.z;
+          d.data = JSON.parse(d.data);
         });
+
+        self.webMarkups = data;
+      });
     }
   }
 };

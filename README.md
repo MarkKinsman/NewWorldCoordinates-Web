@@ -4,6 +4,7 @@
 
 AR/VR construction issue tracking and markup app, with a web viewer interface.
 
+![demo](assets/demo.gif)
 ![basic vue](assets/ui.png)
 
 There are three repositories for this project: <br>

@@ -40,34 +40,34 @@ export default {
     markups: [
       {
         id: "X1",
-        summary: "An issue",
-        comments: "Stuff is messed up",
+        summary: "Studs placed at wrong spacing.",
+        comments: "Stuff is messed up.",
         location: [70, 125, 0],
         x_axis: 70,
         y_axis: 125,
         radius: 10,
         color: "purple",
-        note: "sample"
+        note: "Revise before RFI #23."
       },
       {
         id: "X2",
-        summary: "Another issue",
-        comments: "Concrete in wrong place",
+        summary: "Concrete pour QA/QC issue.",
+        comments: "Concrete in wrong place.",
         location: [110, 100, 0],
         x_axis: 110,
         y_axis: 100,
         color: "red",
-        note: "sample"
+        note: "Never use WG Clark Construction again."
       },
       {
         id: "X3",
-        summary: "An issue",
-        comments: "Steel has melted",
+        summary: "Steel member failure.",
+        comments: "Steel has melted.",
         location: [300, 200, 0],
         x_axis: 300,
         y_axis: 200,
         color: "red",
-        note: "sample"
+        note: "Don't let WG Clark Construction install steel again."
       }
     ]
   }),

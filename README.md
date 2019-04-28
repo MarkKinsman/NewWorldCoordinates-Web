@@ -1,7 +1,7 @@
 # New World Coordinates
 
 [![Generic badge](https://img.shields.io/badge/Deploy-Aws-Green.svg)](https://new-world-coordinates.mitevpi.now.sh )
-[![Generic badge](https://img.shields.io/badge/Demo-Video-Green.svg)](https://youtu.be/VmzQxjnwUfE)
+[![Generic badge](https://img.shields.io/badge/Demo-Video-Green.svg)](https://youtu.be/mKRnik1kuKE)
 
 AR/VR construction issue tracking and markup app, with a web viewer interface.
 

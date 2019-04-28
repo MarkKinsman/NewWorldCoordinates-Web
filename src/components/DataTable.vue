@@ -29,6 +29,7 @@ export default {
   name: "DataTable",
   data: () => ({
     selected: [],
+    getInterval: 5000,
     headers: [
       {
         text: "ID",
@@ -76,8 +77,9 @@ export default {
     webMarkups: []
   }),
   mounted() {
-    this.$store.commit("setMarkupData", this.webMarkups);
     this.GetMarkupData();
+    // this.interval = setInterval(() => this.GetMarkupData(), this.getInterval);
+    this.$store.commit("setMarkupData", this.webMarkups);
   },
   watch: {
     webMarkups: function(val) {

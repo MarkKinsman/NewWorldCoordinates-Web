@@ -127,16 +127,18 @@ export default {
       });
       this.closedIssues = closed;
       this.openIssues = open;
+      var tempData = [closed, open];
 
-      var temp = {};
-      var tempData = [self.closedIssues, self.openIssues];
-      temp.labels = ["Closed", "Open"];
-      temp.datasets = [
-        {
-          data: tempData,
-          backgroundColor: ["#E9967A", "#9ACD32"]
-        }
-      ];
+      var temp = {
+        datasets: [
+          {
+            data: [this.$data.openIssues, this.$data.closedIssues],
+            backgroundColor: ["#E9967A", "#9ACD32"]
+          }
+        ],
+        labels: ["Red", "Green"]
+      };
+      // temp.datasets[0].data = tempData;
       return temp;
     }
   },

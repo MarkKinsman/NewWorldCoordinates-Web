@@ -18,13 +18,17 @@ export default {
   }),
   mounted() {
     this.LoadImage().then(img => {
-      console.log("IMG", img.height);
-      console.log("IMG", img.width);
+      console.log("IMAGE HEIGHT", img.height);
+      console.log("IMAGE WIDTH", img.width);
       this.DrawChart();
     });
   },
   methods: {
+    TestClick(data) {
+      console.log("clicked", data);
+    },
     DrawChart() {
+      let self = this;
       const div = d3
         .select("body")
         .append("div")
@@ -59,6 +63,7 @@ export default {
           div
             .transition()
             .duration(200)
+            .style("cursor", "pointer")
             .style("opacity", 0.9);
           div
             .html(
@@ -77,7 +82,11 @@ export default {
           div
             .transition()
             .duration(500)
+            .style("cursor", "default")
             .style("opacity", 0);
+        })
+        .on("click", d => {
+          self.TestClick(d);
         });
     },
     LoadImage() {

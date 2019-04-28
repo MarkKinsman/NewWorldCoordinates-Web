@@ -40,24 +40,15 @@
 
     <div class="grid-container">
       <div class="grid-item">
-        <PieChart canvasId="testA" title="Open Issues" :data="sampleData"></PieChart>
+        <PieChart canvasId="testA" title="Open Issues" :data="openIssuesSample"></PieChart>
       </div>
       <div class="grid-item">
-        <PieChart canvasId="testB" title="Construction/Design" :data="sampleData"></PieChart>
+        <PieChart canvasId="testB" title="Construction/Design" :data="openIssuesData"></PieChart>
       </div>
       <div class="grid-item">
         <PieChart canvasId="testC" title="Projects" :data="sampleData"></PieChart>
       </div>
     </div>
-
-    <!-- <v-layout row wrap>
-      <v-flex>
-        <PieChart canvasId="testA"></PieChart>
-      </v-flex>
-      <v-flex>
-        <PieChart canvasId="testB"></PieChart>
-      </v-flex>
-    </v-layout>-->
   </div>
 </template>
 
@@ -75,6 +66,8 @@ export default {
     selected: [],
     search: "",
     getInterval: 5000,
+    openIssues: 0,
+    closedIssues: 0,
     headers: [
       {
         text: "ID",
@@ -109,6 +102,42 @@ export default {
         ],
         labels: ["Red", "Yellow", "Green"]
       };
+    },
+    openIssuesSample() {
+      return {
+        datasets: [
+          {
+            data: [10, 20],
+            backgroundColor: ["#E9967A", "#9ACD32"]
+          }
+        ],
+        labels: ["Open", "Closed"]
+      };
+    },
+    openIssuesData() {
+      const self = this;
+      var closed = 0;
+      var open = 0;
+      this.webMarkups.map(m => {
+        if (m.status == "Open") {
+          open++;
+        } else {
+          closed++;
+        }
+      });
+      this.closedIssues = closed;
+      this.openIssues = open;
+
+      var temp = {};
+      var tempData = [self.closedIssues, self.openIssues];
+      temp.labels = ["Closed", "Open"];
+      temp.datasets = [
+        {
+          data: tempData,
+          backgroundColor: ["#E9967A", "#9ACD32"]
+        }
+      ];
+      return temp;
     }
   },
   methods: {

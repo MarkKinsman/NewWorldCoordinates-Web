@@ -22,6 +22,8 @@
 </template>
 
 <script>
+const axios = require("axios");
+
 export default {
   name: "DataTable",
   data: () => ({
@@ -73,10 +75,24 @@ export default {
   }),
   mounted() {
     this.$store.commit("setMarkupData", this.markups);
+    this.GetMarkupData();
   },
   watch: {
     markups: function(val) {
       this.$store.commit("setMarkupData", val);
+    }
+  },
+  methods: {
+    GetMarkupData() {
+      // let self = this;
+      axios
+        .post("http://nwc.virtual-insights.com/v1/markups")
+        .then(response => {
+          console.log("DATA FROM API", response);
+        })
+        .catch(error => {
+          console.error(error);
+        });
     }
   }
 };

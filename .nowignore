@@ -1,4 +1,6 @@
 node_modules
 archive
 screenshots
-assets
+
+assets/demo.gif
+assets/ui.png

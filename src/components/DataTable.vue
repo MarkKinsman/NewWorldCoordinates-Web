@@ -1,10 +1,13 @@
 <template>
-  <v-card>
-    <v-card-title>
-      Construction Issues
-      <v-spacer></v-spacer>
-      <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details></v-text-field>
-    </v-card-title>
+  <div>
+    <v-text-field
+      v-model="search"
+      append-icon="search"
+      label="Search"
+      placeholder="Type to Search"
+      single-line
+      hide-details
+    ></v-text-field>
     <v-data-table
       v-if="webMarkups.length > 0"
       :headers="headers"
@@ -34,7 +37,7 @@
         >Your search for "{{ search }}" found no results.</v-alert>
       </template>
     </v-data-table>
-  </v-card>
+  </div>
 </template>
 
 <script>

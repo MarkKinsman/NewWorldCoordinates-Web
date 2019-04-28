@@ -83,7 +83,7 @@ export default {
             .html(
               d.summary +
                 "<br/>" +
-                d.summary +
+                d.comments +
                 "<br/>" +
                 d.note +
                 "<br/>" +

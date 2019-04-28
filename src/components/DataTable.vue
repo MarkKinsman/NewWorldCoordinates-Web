@@ -1,25 +1,40 @@
 <template>
-  <v-data-table
-    v-if="webMarkups.length > 0"
-    :headers="headers"
-    :items="webMarkups"
-    item-key="id"
-    class="elevation-1"
-    select-all
-    v-model="selected"
-  >
-    <template v-slot:items="props">
-      <tr :active="props.selected" @click="props.selected = !props.selected">
-        <td>
-          <v-checkbox :input-value="props.selected" primary hide-details></v-checkbox>
-        </td>
-        <td>{{ props.item.markup_id }}</td>
-        <td class="text-xs-left">{{ props.item.data.Note }}</td>
-        <td class="text-xs-left">{{ props.item.status }}</td>
-        <td class="text-xs-left">{{ props.item.creator }}</td>
-      </tr>
-    </template>
-  </v-data-table>
+  <v-card>
+    <v-card-title>
+      Construction Issues
+      <v-spacer></v-spacer>
+      <v-text-field v-model="search" append-icon="search" label="Search" single-line hide-details></v-text-field>
+    </v-card-title>
+    <v-data-table
+      v-if="webMarkups.length > 0"
+      :headers="headers"
+      :items="webMarkups"
+      :search="search"
+      item-key="markup_id"
+      class="elevation-1"
+      select-all
+      v-model="selected"
+    >
+      <template v-slot:items="props">
+        <tr :active="props.selected" @click="props.selected = !props.selected">
+          <td>
+            <v-checkbox :input-value="props.selected" primary hide-details></v-checkbox>
+          </td>
+          <td>{{ props.item.markup_id }}</td>
+          <td class="text-xs-left">{{ props.item.data.Note }}</td>
+          <td class="text-xs-left">{{ props.item.status }}</td>
+          <td class="text-xs-left">{{ props.item.creator }}</td>
+        </tr>
+      </template>
+      <template v-slot:no-results>
+        <v-alert
+          :value="true"
+          color="error"
+          icon="warning"
+        >Your search for "{{ search }}" found no results.</v-alert>
+      </template>
+    </v-data-table>
+  </v-card>
 </template>
 
 <script>
@@ -29,6 +44,7 @@ export default {
   name: "DataTable",
   data: () => ({
     selected: [],
+    search: "",
     getInterval: 5000,
     headers: [
       {
@@ -95,14 +111,10 @@ export default {
         headers: {
           "cache-control": "no-cache",
           Connection: "keep-alive",
-          "content-length": "12",
           "accept-encoding": "gzip, deflate",
           Host: "nwc.virtual-insights.com",
-          "Postman-Token":
-            "983ae45a-b01b-4610-bb1b-dace74668c2f,8058da64-334d-484a-a5db-0985cff44afb",
           "Cache-Control": "no-cache",
           Accept: "*/*",
-          "User-Agent": "PostmanRuntime/7.11.0",
           "Content-Type": "application/x-www-form-urlencoded"
         },
         form: { version_id: "1" }
@@ -113,7 +125,6 @@ export default {
 
         let data = JSON.parse(body);
         data.map(d => {
-          console.log(d);
           d.location = JSON.parse(d.location);
           d.location.x = +d.location.x;
           d.location.y = +d.location.y;
@@ -122,7 +133,7 @@ export default {
           d.color = d.data.Color;
           d.note = d.data.Note;
         });
-
+        console.log("API DATA", data);
         self.webMarkups = data;
       });
     }

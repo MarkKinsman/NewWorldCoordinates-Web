@@ -37,14 +37,20 @@
         >Your search for "{{ search }}" found no results.</v-alert>
       </template>
     </v-data-table>
+    <PieChart/>
   </div>
 </template>
 
 <script>
+import PieChart from "./PieChart";
+
 const request = require("request");
 
 export default {
   name: "DataTable",
+  components: {
+    PieChart
+  },
   data: () => ({
     selected: [],
     search: "",

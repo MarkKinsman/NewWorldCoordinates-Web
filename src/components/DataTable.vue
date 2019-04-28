@@ -84,14 +84,18 @@ export default {
   },
   methods: {
     GetMarkupData() {
-      // let self = this;
-      axios
-        .post("http://nwc.virtual-insights.com/v1/markups")
+      axios({
+        method: "post",
+        url: "http://nwc.virtual-insights.com/v1/markups",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      })
         .then(response => {
-          console.log("DATA FROM API", response);
+          console.log("RESPONSE", response);
         })
-        .catch(error => {
-          console.error(error);
+        .catch(err => {
+          console.error(err);
         });
     }
   }

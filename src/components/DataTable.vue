@@ -115,30 +115,16 @@ export default {
       };
     },
     openIssuesData() {
-      const self = this;
-      var closed = 0;
-      var open = 0;
-      this.webMarkups.map(m => {
-        if (m.status == "Open") {
-          open++;
-        } else {
-          closed++;
-        }
-      });
-      this.closedIssues = closed;
-      this.openIssues = open;
-      var tempData = [closed, open];
-
+      var dset = [2, 3];
       var temp = {
         datasets: [
           {
-            data: [this.$data.openIssues, this.$data.closedIssues],
+            data: dset,
             backgroundColor: ["#E9967A", "#9ACD32"]
           }
         ],
-        labels: ["Red", "Green"]
+        labels: ["Tier 1", "Tier 2"]
       };
-      // temp.datasets[0].data = tempData;
       return temp;
     }
   },
@@ -175,6 +161,19 @@ export default {
         });
         console.log("API DATA", data);
         self.webMarkups = data;
+
+        // other data
+        var closed = 0;
+        var open = 0;
+        self.webMarkups.map(m => {
+          if (m.status == "Open") {
+            open++;
+          } else {
+            closed++;
+          }
+        });
+        this.closedIssues = closed;
+        this.openIssues = open;
       });
     }
   }

@@ -81,11 +81,11 @@ export default {
             .style("opacity", 0.9);
           div
             .html(
-              d.note +
+              d.summary +
                 "<br/>" +
                 d.summary +
                 "<br/>" +
-                d.comments +
+                d.note +
                 "<br/>" +
                 d.color
             )
@@ -208,7 +208,7 @@ div.tooltip {
   position: absolute;
   text-align: left;
   width: 120px;
-  height: 55px;
+  height: 75px;
   padding: 2px;
   font: 10px sans-serif;
   background: lightgrey;

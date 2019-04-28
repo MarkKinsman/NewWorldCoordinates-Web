@@ -48,8 +48,7 @@ export default {
   display: -webkit-flex; /* Safari */
   display: flex;
 }
-.ui-fade-enter-active,
-.ui-fade-leave-active {
+.ui-fade-enter-active {
   transition: opacity 0.5s;
 }
 .ui-fade-enter,

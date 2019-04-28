@@ -117,6 +117,8 @@ export default {
           d.location.y = +d.location.y;
           d.location.z = +d.location.z;
           d.data = JSON.parse(d.data);
+          d.color = d.data.Color;
+          d.note = d.data.Note;
         });
 
         self.webMarkups = data;

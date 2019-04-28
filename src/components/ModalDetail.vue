@@ -4,10 +4,10 @@
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>Issue Details</v-card-title>
 
-        <v-card-text>{{creator}}</v-card-text>
-        <v-card-text>{{status}}</v-card-text>
-        <v-card-text>{{comments}}</v-card-text>
-        <v-card-text>{{color}}</v-card-text>
+        <v-card-text>Creator: {{creator}}</v-card-text>
+        <v-card-text>Status: {{status}}</v-card-text>
+        <v-card-text>Comments: {{comments}}</v-card-text>
+        <v-card-text>Color: {{color}}</v-card-text>
 
         <v-divider></v-divider>
 

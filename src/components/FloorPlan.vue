@@ -7,8 +7,8 @@
     <ModalDetail
       :creator="modalData.creator"
       :status="modalData.status"
-      :comments="modalData.data.Note"
-      :color="modalData.data.Color"
+      :comments="modalData.note"
+      :color="modalData.color"
     />
   </v-container>
 </template>
@@ -71,7 +71,7 @@ export default {
           return d.note;
         })
         .style("fill", d => {
-          return d.data.Color;
+          return d.color;
         })
         .on("mouseover", d => {
           div
@@ -80,7 +80,7 @@ export default {
             .style("cursor", "pointer")
             .style("opacity", 0.9);
           div
-            .html(d.status + "<br/>" + d.data.Note)
+            .html(d.status + "<br/>" + d.note)
             .style("left", d3.event.pageX + "px")
             .style("top", d3.event.pageY - 28 + "px");
         })

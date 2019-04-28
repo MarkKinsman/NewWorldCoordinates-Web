@@ -7,8 +7,8 @@
     <ModalDetail
       :creator="modalData.creator"
       :status="modalData.status"
-      :color="modalData.color"
-      :comments="modalData.comments"
+      :comments="modalData.data.Note"
+      :color="modalData.data.Color"
     />
   </v-container>
 </template>

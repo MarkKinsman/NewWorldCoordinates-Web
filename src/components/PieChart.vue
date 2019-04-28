@@ -1,6 +1,6 @@
 <template>
   <v-container style="padding: 15px">
-    <canvas :id="canvasId" width="100" height="100"></canvas>
+    <canvas :id="canvasId" width="100" height="100" @click="Update"></canvas>
   </v-container>
 </template>
 
@@ -8,10 +8,13 @@
 import Chart from "chart.js";
 export default {
   name: "PieChart",
-  props: ["canvasId", "title", "data"],
-  data: () => ({}),
+  props: ["canvasId", "title", "dataObj"],
+  data: () => ({
+    chart: null
+  }),
   mounted() {
     this.DrawChart();
+    this.chart.update();
   },
   methods: {
     DrawChart() {
@@ -41,11 +44,16 @@ export default {
         }
       };
       var ctx = document.getElementById(self.canvasId);
-      new Chart(ctx, {
+      var chart = new Chart(ctx, {
         type: "doughnut",
-        data: self.data,
+        data: self.dataObj,
         options: options
       });
+      this.$data.chart = chart;
+    },
+    Update() {
+      console.log("TRIED TO UPDATE CHART");
+      this.chart.update();
     }
   }
 };

@@ -38,15 +38,15 @@
       </template>
     </v-data-table>
 
-    <div class="grid-container">
+    <div v-if="dataStatus == 'loaded'" class="grid-container">
       <div class="grid-item">
-        <PieChart canvasId="testA" title="Open Issues" :data="openIssuesSample"></PieChart>
+        <PieChart canvasId="testA" title="Open Issues" :dataObj="openIssuesData"></PieChart>
       </div>
       <div class="grid-item">
-        <PieChart canvasId="testB" title="Construction/Design" :data="openIssuesData"></PieChart>
+        <PieChart canvasId="testB" title="Construction/Design" :dataObj="openIssuesSample"></PieChart>
       </div>
       <div class="grid-item">
-        <PieChart canvasId="testC" title="Projects" :data="sampleData"></PieChart>
+        <PieChart canvasId="testC" title="Projects" :dataObj="sampleData"></PieChart>
       </div>
     </div>
   </div>
@@ -65,6 +65,7 @@ export default {
   data: () => ({
     selected: [],
     search: "",
+    dataStatus: "none",
     getInterval: 5000,
     openIssues: 0,
     closedIssues: 0,
@@ -111,11 +112,11 @@ export default {
             backgroundColor: ["#E9967A", "#9ACD32"]
           }
         ],
-        labels: ["Open", "Closed"]
+        labels: ["Tier 1", "Tier 2"]
       };
     },
     openIssuesData() {
-      var dset = [2, 3];
+      var dset = [this.$data.openIssues, this.$data.closedIssues];
       var temp = {
         datasets: [
           {
@@ -123,7 +124,7 @@ export default {
             backgroundColor: ["#E9967A", "#9ACD32"]
           }
         ],
-        labels: ["Tier 1", "Tier 2"]
+        labels: ["Open", "Closed"]
       };
       return temp;
     }
@@ -172,8 +173,9 @@ export default {
             closed++;
           }
         });
-        this.closedIssues = closed;
-        this.openIssues = open;
+        self.$data.closedIssues = closed;
+        self.$data.openIssues = open;
+        self.$data.dataStatus = "loaded";
       });
     }
   }

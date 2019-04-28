@@ -4,8 +4,8 @@
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>Issue Details</v-card-title>
 
-        <v-card-text>{{notes}}</v-card-text>
-        <v-card-text>{{summary}}</v-card-text>
+        <v-card-text>{{creator}}</v-card-text>
+        <v-card-text>{{status}}</v-card-text>
         <v-card-text>{{comments}}</v-card-text>
         <v-card-text>{{color}}</v-card-text>
 
@@ -23,7 +23,7 @@
 <script>
 export default {
   name: "ModalDetail",
-  props: ["color", "notes", "summary", "comments"],
+  props: ["color", "creator", "status", "comments"],
   data: () => ({
     //dialog: false
   }),

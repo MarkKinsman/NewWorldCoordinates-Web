@@ -1,7 +1,8 @@
 <template>
   <v-data-table
+    v-if="webMarkups.length > 0"
     :headers="headers"
-    :items="markups"
+    :items="webMarkups"
     item-key="id"
     class="elevation-1"
     select-all
@@ -12,10 +13,10 @@
         <td>
           <v-checkbox :input-value="props.selected" primary hide-details></v-checkbox>
         </td>
-        <td>{{ props.item.id }}</td>
-        <td class="text-xs-left">{{ props.item.summary }}</td>
-        <td class="text-xs-left">{{ props.item.location }}</td>
-        <td class="text-xs-left">{{ props.item.comments }}</td>
+        <td>{{ props.item.markup_id }}</td>
+        <td class="text-xs-left">{{ props.item.data.Note }}</td>
+        <td class="text-xs-left">{{ props.item.status }}</td>
+        <td class="text-xs-left">{{ props.item.creator }}</td>
       </tr>
     </template>
   </v-data-table>
@@ -33,11 +34,11 @@ export default {
         text: "ID",
         align: "left",
         sortable: false,
-        value: "id"
+        value: "markup_id"
       },
-      { text: "Summary", value: "summary", align: "left" },
-      { text: "Location", value: "location", align: "left" },
-      { text: "Comments", value: "comments", align: "left" }
+      { text: "Note", value: "note", align: "left" },
+      { text: "Status", value: "status", align: "left" },
+      { text: "Creator", value: "creator", align: "left" }
     ],
     markups: [
       {
@@ -75,11 +76,11 @@ export default {
     webMarkups: []
   }),
   mounted() {
-    this.$store.commit("setMarkupData", this.markups);
+    this.$store.commit("setMarkupData", this.webMarkups);
     this.GetMarkupData();
   },
   watch: {
-    markups: function(val) {
+    webMarkups: function(val) {
       this.$store.commit("setMarkupData", val);
     }
   },

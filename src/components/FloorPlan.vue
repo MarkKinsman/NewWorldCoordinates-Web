@@ -5,8 +5,8 @@
       <svg viewBox="0 0 573 573"></svg>
     </div>
     <ModalDetail
-      :notes="modalData.note"
-      :summary="modalData.summary"
+      :creator="modalData.creator"
+      :status="modalData.status"
       :color="modalData.color"
       :comments="modalData.comments"
     />
@@ -59,10 +59,10 @@ export default {
 
       circles
         .attr("cx", d => {
-          return d.x_axis;
+          return d.location.x;
         })
         .attr("cy", d => {
-          return d.y_axis;
+          return d.location.y;
         })
         .attr("r", () => {
           return 10;
@@ -71,7 +71,7 @@ export default {
           return d.note;
         })
         .style("fill", d => {
-          return d.color;
+          return d.data.Color;
         })
         .on("mouseover", d => {
           div
@@ -80,15 +80,7 @@ export default {
             .style("cursor", "pointer")
             .style("opacity", 0.9);
           div
-            .html(
-              d.summary +
-                "<br/>" +
-                d.comments +
-                "<br/>" +
-                d.note +
-                "<br/>" +
-                d.color
-            )
+            .html(d.status + "<br/>" + d.data.Note)
             .style("left", d3.event.pageX + "px")
             .style("top", d3.event.pageY - 28 + "px");
         })
@@ -208,7 +200,7 @@ div.tooltip {
   position: absolute;
   text-align: left;
   width: 120px;
-  height: 75px;
+  height: 35px;
   padding: 2px;
   font: 10px sans-serif;
   background: lightgrey;

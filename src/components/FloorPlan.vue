@@ -4,17 +4,29 @@
       <img v-if="image !=null" :src="image.src" id="plan">
       <svg viewBox="0 0 573 573"></svg>
     </div>
+    <ModalDetail
+      :notes="modalData.note"
+      :summary="modalData.summary"
+      :color="modalData.color"
+      :comments="modalData.comments"
+    />
   </v-container>
 </template>
 
 <script>
+import ModalDetail from "./ModalDetail";
 import { Promise } from "q";
 var d3 = require("d3");
 
 export default {
   name: "FloorPlan",
+  components: {
+    ModalDetail
+  },
   data: () => ({
-    image: null
+    image: null,
+    modalData: {},
+    modal: false
   }),
   mounted() {
     this.LoadImage().then(img => {
@@ -24,8 +36,10 @@ export default {
     });
   },
   methods: {
-    TestClick(data) {
-      console.log("clicked", data);
+    SetModalData(data) {
+      self.modalData = data;
+      self.modal = true;
+      console.log("CLICKED DATA", data);
     },
     DrawChart() {
       let self = this;
@@ -86,7 +100,10 @@ export default {
             .style("opacity", 0);
         })
         .on("click", d => {
-          self.TestClick(d);
+          self.SetModalData(d);
+          self.modalData = d;
+          self.modal = true;
+          this.$store.commit("setModal", true);
         });
     },
     LoadImage() {
@@ -157,6 +174,11 @@ export default {
         .scaleLinear()
         .domain([0, self.imgHeight])
         .range([0, 1]);
+    }
+  },
+  watch: {
+    modal: function(val) {
+      this.$store.commit("setModal", val);
     }
   }
 };

@@ -6,7 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     appMode: "List",
-    markupData: []
+    markupData: [],
+    modal: false
   },
   mutations: {
     setAppMode(state, appMode) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     setMarkupData(state, markupData) {
       state.markupData = markupData;
+    },
+    setModal(state, modal) {
+      state.modal = modal;
     }
   },
   actions: {}

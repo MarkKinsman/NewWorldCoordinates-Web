@@ -4,13 +4,16 @@
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>Issue Details</v-card-title>
 
-        <v-card-text>Details go here and stuff.</v-card-text>
+        <v-card-text>{{notes}}</v-card-text>
+        <v-card-text>{{summary}}</v-card-text>
+        <v-card-text>{{comments}}</v-card-text>
+        <v-card-text>{{color}}</v-card-text>
 
         <v-divider></v-divider>
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" flat @click="dialog = false">Close</v-btn>
+          <v-btn color="primary" flat @click="SetDialog">Close</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -20,10 +23,25 @@
 <script>
 export default {
   name: "ModalDetail",
-  props: ["dialog", "color", "notes"],
+  props: ["color", "notes", "summary", "comments"],
   data: () => ({
-    // dialog: false
-  })
+    //dialog: false
+  }),
+  methods: {
+    SetDialog() {
+      this.$store.commit("setModal", false);
+    }
+  },
+  // watch: {
+  //   dialog: function(val) {
+  //     this.$store.commit("setModal", val);
+  //   }
+  // },
+  computed: {
+    dialog() {
+      return this.$store.state.modal;
+    }
+  }
 };
 </script>
 

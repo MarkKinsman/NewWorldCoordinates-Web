@@ -32,11 +32,6 @@ export default {
       this.$store.commit("setModal", false);
     }
   },
-  // watch: {
-  //   dialog: function(val) {
-  //     this.$store.commit("setModal", val);
-  //   }
-  // },
   computed: {
     dialog() {
       return this.$store.state.modal;
